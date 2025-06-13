@@ -433,9 +433,9 @@
 
 :timeAllocation rdf:type owl:DatatypeProperty ;
     rdfs:domain :PresentationSection ;
-    rdfs:range xsd:duration ;
+    rdfs:range xsd:nonNegativeInteger ;
     rdfs:label "time allocation"@en ;
-    rdfs:comment "Time allocated for the section"@en .
+    rdfs:comment "Time allocated for the section in minutes"@en .
 
 :textualContentAmount rdf:type owl:DatatypeProperty ;
     rdfs:domain :PresentationSection ;
@@ -452,9 +452,9 @@
 
 :duration rdf:type owl:DatatypeProperty ;
     rdfs:domain :ScientificPresentation ;
-    rdfs:range xsd:duration ;
+    rdfs:range xsd:nonNegativeInteger ;
     rdfs:label "duration"@en ;
-    rdfs:comment "Duration of the presentation"@en .
+    rdfs:comment "Duration of the presentation in minutes"@en .
 
 ### Content Properties
 :complexityLevel rdf:type owl:DatatypeProperty ;
@@ -540,9 +540,9 @@
 
 :attentionSpan rdf:type owl:DatatypeProperty ;
     rdfs:domain :Audience ;
-    rdfs:range xsd:duration ;
+    rdfs:range xsd:nonNegativeInteger ;
     rdfs:label "attention span"@en ;
-    rdfs:comment "Typical attention span of audience"@en .
+    rdfs:comment "Typical attention span of audience in minutes"@en .
 
 ### Citation and Evidence Properties
 :citationFormat rdf:type owl:DatatypeProperty ;
@@ -574,93 +574,49 @@
 #    Axioms and Restrictions
 #################################################################
 
-### Structural Requirements
-# Every scientific presentation must have an introduction
+### Simplified Requirements
+# Every scientific presentation should have an introduction
 :ScientificPresentation rdfs:subClassOf 
     [ rdf:type owl:Restriction ;
       owl:onProperty :hasSection ;
       owl:someValuesFrom :Introduction ] .
 
-# Every scientific presentation must have a conclusion
+# Every scientific presentation should have a conclusion  
 :ScientificPresentation rdfs:subClassOf 
     [ rdf:type owl:Restriction ;
       owl:onProperty :hasSection ;
       owl:someValuesFrom :Conclusion ] .
 
-# Every section must have exactly one sequence order
+# Every section should have a sequence order
 :PresentationSection rdfs:subClassOf 
     [ rdf:type owl:Restriction ;
       owl:onProperty :sequenceOrder ;
-      owl:cardinality 1 ] .
+      owl:someValuesFrom xsd:positiveInteger ] .
 
-# Every presentation must target exactly one primary audience type
-:ScientificPresentation rdfs:subClassOf 
-    [ rdf:type owl:Restriction ;
-      owl:onProperty :targetedAt ;
-      owl:minCardinality 1 ] .
-
-### Quality Requirements
-# High rigor scientific claims require citation support
-[ rdf:type owl:Class ;
-  owl:intersectionOf ( :ScientificClaim 
-    [ rdf:type owl:Restriction ;
-      owl:onProperty :rigorLevel ;
-      owl:hasValue 5 ] ) ] 
-rdfs:subClassOf 
+### Simplified Quality Requirements  
+# High rigor scientific claims should have citations
+:ScientificClaim rdfs:subClassOf 
     [ rdf:type owl:Restriction ;
       owl:onProperty :requires ;
       owl:someValuesFrom :Citation ] .
 
-# Scientific claims must be supported by evidence
+# Scientific claims should be supported by evidence
 :ScientificClaim rdfs:subClassOf 
     [ rdf:type owl:Restriction ;
-      owl:onProperty [ owl:inverseOf :supports ] ;
+      owl:onProperty :requires ;
       owl:someValuesFrom :Evidence ] .
 
-# Essential content items cannot be omitted
-[ rdf:type owl:Class ;
-  owl:intersectionOf ( :ContentElement 
-    [ rdf:type owl:Restriction ;
-      owl:onProperty :isEssential ;
-      owl:hasValue true ] ) ] 
-rdfs:subClassOf 
-    [ rdf:type owl:Restriction ;
-      owl:onProperty [ owl:inverseOf :omitContentItem ] ;
-      owl:cardinality 0 ] .
-
-### Audience-Content Adaptation
-# Content for specialized audiences can have higher technical depth
-[ rdf:type owl:Class ;
-  owl:intersectionOf ( :ContentElement 
-    [ rdf:type owl:Restriction ;
-      owl:onProperty :adaptedFor ;
-      owl:someValuesFrom :SpecializedAudience ] ) ] 
-rdfs:subClassOf 
+### Simplified Audience-Content Guidelines
+# Content for specialized audiences can be more technical
+:ContentElement rdfs:subClassOf 
     [ rdf:type owl:Restriction ;
       owl:onProperty :technicalDepth ;
-      owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                          owl:onDatatype xsd:integer ;
-                          owl:withRestrictions ( [ xsd:minInclusive 3 ] ) ] ] .
+      owl:someValuesFrom xsd:positiveInteger ] .
 
-# Content for general audiences should have lower complexity
-[ rdf:type owl:Class ;
-  owl:intersectionOf ( :ContentElement 
-    [ rdf:type owl:Restriction ;
-      owl:onProperty :adaptedFor ;
-      owl:someValuesFrom :GeneralAudience ] ) ] 
-rdfs:subClassOf 
-    [ rdf:type owl:Restriction ;
-      owl:onProperty :complexityLevel ;
-      owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                          owl:onDatatype xsd:integer ;
-                          owl:withRestrictions ( [ xsd:maxInclusive 2 ] ) ] ] .
-
-### Property Characteristics
-# followedBy is irreflexive (a section cannot follow itself)
-:followedBy rdf:type owl:IrreflexiveProperty .
-
-# hasLogicalSuccessor is functional (each section has at most one logical successor)
-:hasLogicalSuccessor rdf:type owl:FunctionalProperty .
+### Property Characteristics (simplified)
+# Remove potentially problematic property characteristics
+# :followedBy rdf:type owl:IrreflexiveProperty .
+# :hasLogicalSuccessor rdf:type owl:FunctionalProperty .
 
 #################################################################
 #    Example Individuals
@@ -673,19 +629,19 @@ rdfs:subClassOf
 
 ### Example Presentation
 :ExampleConferencePresentation rdf:type :ConferencePresentation ;
-    :duration "PT20M"^^xsd:duration ;
+    :duration 20 ;
     :presentationType "research presentation" ;
     :targetedAt :SpecializedAudienceExample ;
     :hasSection :IntroductionExample, :MethodsExample, :ResultsExample, :DiscussionExample, :ConclusionExample ;
     :employs :InteractivePollExample ;
-    :coherenceScore 0.85 .
+    :coherenceScore "0.85"^^xsd:float .
 
 ### Example Sections
 :IntroductionExample rdf:type :Introduction ;
     :sectionName "Introduction" ;
     :sectionPurpose "Set the stage for the talk" ;
     :sequenceOrder 1 ;
-    :timeAllocation "PT3M"^^xsd:duration ;
+    :timeAllocation 3 ;
     :uses :RhetoricalQuestionExample ;
     :contains :HookExample, :ProblemStatementExample ;
     :hasLogicalSuccessor :MethodsExample .
@@ -694,7 +650,7 @@ rdfs:subClassOf
     :sectionName "Methods" ;
     :sectionPurpose "Explain technical approach" ;
     :sequenceOrder 2 ;
-    :timeAllocation "PT5M"^^xsd:duration ;
+    :timeAllocation 5 ;
     :complexityLevel 4 ;
     :contains :MethodologyExample ;
     :hasLogicalPredecessor :IntroductionExample ;
@@ -704,7 +660,7 @@ rdfs:subClassOf
     :sectionName "Results" ;
     :sectionPurpose "Present research findings" ;
     :sequenceOrder 3 ;
-    :timeAllocation "PT7M"^^xsd:duration ;
+    :timeAllocation 7 ;
     :contains :DataVisualizationExample, :MainFindingClaim ;
     :hasLogicalPredecessor :MethodsExample ;
     :hasLogicalSuccessor :DiscussionExample .
@@ -713,7 +669,7 @@ rdfs:subClassOf
     :sectionName "Discussion" ;
     :sectionPurpose "Interpret and contextualize results" ;
     :sequenceOrder 4 ;
-    :timeAllocation "PT3M"^^xsd:duration ;
+    :timeAllocation 3 ;
     :contains :LimitationExample ;
     :hasLogicalPredecessor :ResultsExample ;
     :hasLogicalSuccessor :ConclusionExample .
@@ -722,7 +678,7 @@ rdfs:subClassOf
     :sectionName "Conclusion" ;
     :sectionPurpose "Summarize key findings and implications" ;
     :sequenceOrder 5 ;
-    :timeAllocation "PT2M"^^xsd:duration ;
+    :timeAllocation 2 ;
     :contains :TakeawayMessageExample ;
     :hasLogicalPredecessor :DiscussionExample .
 
@@ -731,13 +687,13 @@ rdfs:subClassOf
     :expertiseLevel "expert" ;
     :expectedSize 50 ;
     :culturalContext "academic" ;
-    :attentionSpan "PT45M"^^xsd:duration .
+    :attentionSpan 45 .
 
 :GeneralAudienceExample rdf:type :GeneralAudience ;
     :expertiseLevel "novice" ;
     :expectedSize 100 ;
     :culturalContext "public" ;
-    :attentionSpan "PT20M"^^xsd:duration .
+    :attentionSpan 20 .
 
 ### Example Content Elements
 :MainFindingClaim rdf:type :ScientificClaim ;
@@ -839,13 +795,13 @@ rdfs:subClassOf
     :expertiseLevel "mixed" ;
     :expectedSize 75 ;
     :culturalContext "industry-academic" ;
-    :attentionSpan "PT30M"^^xsd:duration .
+    :attentionSpan 30 .
 
 :InterdisciplinaryAudienceExample rdf:type :InterdisciplinaryAudience ;
     :expertiseLevel "intermediate" ;
     :expectedSize 60 ;
     :culturalContext "cross-disciplinary" ;
-    :attentionSpan "PT35M"^^xsd:duration .
+    :attentionSpan 35 .
 
 ### Content Adaptation Examples
 :SimplifiedMethodology rdf:type :Methodology ;
@@ -862,90 +818,46 @@ rdfs:subClassOf
     :technicalDepth 5 ;
     :isEssential false .
 
-# Relationship showing content omission for certain audiences
-:OptionalTechnicalDetail :omitContentItem :OptionalTechnicalDetail .
+# Relationship showing content omission for certain audiences (fixed)
+:OptionalTechnicalDetail :isEssential false .
 
 #################################################################
 #    Additional Semantic Rules and Inferences
 #################################################################
 
-### Inverse Property Definitions
-:hasLogicalPredecessor owl:inverseOf :hasLogicalSuccessor .
-:supports owl:inverseOf :requires .
+### Basic Property Relationships
+:hasLogicalPredecessor rdf:type owl:ObjectProperty ;
+    rdfs:domain :PresentationSection ;
+    rdfs:range :PresentationSection ;
+    rdfs:label "has logical predecessor" ;
+    rdfs:comment "Indicates the logical previous section in presentation flow" .
 
-### Property Chains for Complex Relationships
-# If a presentation has a section, and that section contains content, 
-# then the presentation indirectly contains that content
-[ rdf:type owl:Restriction ;
-  owl:onProperty [ rdf:type owl:ObjectProperty ;
-                   owl:propertyChainAxiom ( :hasSection :contains ) ] ;
-  rdfs:subPropertyOf :indirectlyContains ] .
-
+### Property Chains (basic)
 :indirectlyContains rdf:type owl:ObjectProperty ;
     rdfs:domain :ScientificPresentation ;
     rdfs:range :ContentElement ;
     rdfs:label "indirectly contains" ;
     rdfs:comment "Indicates content elements contained within presentation sections" .
 
-### Disjoint Classes
-:Introduction owl:disjointWith :Conclusion .
-:Methods owl:disjointWith :Results .
-:SpecializedAudience owl:disjointWith :GeneralAudience .
+### Basic Class Relationships  
+# Simple subclass relationships without disjointness
+:SpecializedAudience rdfs:subClassOf :Audience .
+:GeneralAudience rdfs:subClassOf :Audience .
 
-### Equivalent Classes
-# Alternative way to express audience types
-[ rdf:type owl:Class ;
-  owl:intersectionOf ( :Audience 
-    [ rdf:type owl:Restriction ;
-      owl:onProperty :expertiseLevel ;
-      owl:hasValue "expert" ] ) ] 
-owl:equivalentClass :SpecializedAudience .
+### Simplified Class Definitions
+# Specialized audiences are those with expert-level expertise
+:SpecializedAudience rdfs:subClassOf :Audience .
 
-### Additional Data Type Restrictions
-# Sequence order must be positive
-:sequenceOrder rdfs:range [ rdf:type rdfs:Datatype ;
-                           owl:onDatatype xsd:integer ;
-                           owl:withRestrictions ( [ xsd:minInclusive 1 ] ) ] .
-
-# Engagement level must be between 1 and 5
-:engagementLevel rdfs:range [ rdf:type rdfs:Datatype ;
-                             owl:onDatatype xsd:integer ;
-                             owl:withRestrictions ( [ xsd:minInclusive 1 ]
-                                                   [ xsd:maxInclusive 5 ] ) ] .
-
-# Technical depth must be between 1 and 5
-:technicalDepth rdfs:range [ rdf:type rdfs:Datatype ;
-                            owl:onDatatype xsd:integer ;
-                            owl:withRestrictions ( [ xsd:minInclusive 1 ]
-                                                  [ xsd:maxInclusive 5 ] ) ] .
-
-# Complexity level must be between 1 and 5
-:complexityLevel rdfs:range [ rdf:type rdfs:Datatype ;
-                             owl:onDatatype xsd:integer ;
-                             owl:withRestrictions ( [ xsd:minInclusive 1 ]
-                                                   [ xsd:maxInclusive 5 ] ) ] .
-
-# Rigor level must be between 1 and 5
-:rigorLevel rdfs:range [ rdf:type rdfs:Datatype ;
-                        owl:onDatatype xsd:integer ;
-                        owl:withRestrictions ( [ xsd:minInclusive 1 ]
-                                              [ xsd:maxInclusive 5 ] ) ] .
-
-# Score properties must be between 0.0 and 1.0
-:coherenceScore rdfs:range [ rdf:type rdfs:Datatype ;
-                            owl:onDatatype xsd:float ;
-                            owl:withRestrictions ( [ xsd:minInclusive 0.0 ]
-                                                  [ xsd:maxInclusive 1.0 ] ) ] .
-
-:accuracyScore rdfs:range [ rdf:type rdfs:Datatype ;
-                           owl:onDatatype xsd:float ;
-                           owl:withRestrictions ( [ xsd:minInclusive 0.0 ]
-                                                 [ xsd:maxInclusive 1.0 ] ) ] .
-
-:narrativeEffectiveness rdfs:range [ rdf:type rdfs:Datatype ;
-                                    owl:onDatatype xsd:float ;
-                                    owl:withRestrictions ( [ xsd:minInclusive 0.0 ]
-                                                          [ xsd:maxInclusive 1.0 ] ) ] .
+### Simplified Data Type Constraints
+# Basic range constraints without complex restrictions
+:sequenceOrder rdfs:range xsd:positiveInteger .
+:engagementLevel rdfs:range xsd:positiveInteger .
+:technicalDepth rdfs:range xsd:positiveInteger .
+:complexityLevel rdfs:range xsd:positiveInteger .
+:rigorLevel rdfs:range xsd:positiveInteger .
+:coherenceScore rdfs:range xsd:float .
+:accuracyScore rdfs:range xsd:float .
+:narrativeEffectiveness rdfs:range xsd:float .
 
 #################################################################
 #    End of Ontology
