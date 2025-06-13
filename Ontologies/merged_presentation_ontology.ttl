@@ -119,8 +119,13 @@
     rdfs:subClassOf :Audience ;
     rdfs:label "General Audience"@en ;
     rdfs:comment "Non-specialist audience with limited domain knowledge"@en .
+    
+:Presenter rdf:type owl:Class ;
+           rdfs:comment "Person or entity delivering a scientific presentation" ;
+           rdfs:label "Presenter" .
 
 ### Content Elements
+
 :ContentElement rdf:type owl:Class ;
     rdfs:label "Content Element"@en ;
     rdfs:comment "A specific piece of content within a presentation"@en .
@@ -284,6 +289,13 @@
     rdfs:range :PresentationSection ;
     rdfs:label "has section"@en ;
     rdfs:comment "Indicates that a presentation contains a specific section"@en .
+
+
+:hasPresenter rdf:type owl:ObjectProperty ;
+           rdfs:domain :ScientificPresentation ;
+           rdfs:range :Presenter ;
+           rdfs:comment "The person or entity delivering the scientific presentation" ;
+           rdfs:label "presenter" .
 
 :hasRecommendedSection rdf:type owl:ObjectProperty ;
     rdfs:subPropertyOf :hasSection ;
@@ -710,7 +722,7 @@
 :ExperimentalEvidence rdf:type :Evidence ;
     :evidenceType "experimental" ;
     :supports :MainFindingClaim ;
-    :accuracyScore 0.95 .
+    :accuracyScore "0.95"^^xsd:float .
 
 :HookExample rdf:type :Hook ;
     :technicalDepth 1 ;
@@ -725,12 +737,12 @@
 :MethodologyExample rdf:type :Methodology ;
     :complexityLevel 4 ;
     :technicalDepth 4 ;
-    :accuracyScore 0.95 ;
+    :accuracyScore "0.95"^^xsd:float ;
     :isEssential true .
 
 :DataVisualizationExample rdf:type :DataVisualization ;
     :technicalDepth 3 ;
-    :accuracyScore 0.98 ;
+    :accuracyScore "0.98"^^xsd:float ;
     :complexityLevel 3 .
 
 :LimitationExample rdf:type :Limitation ;
@@ -752,20 +764,20 @@
     :appropriateFor :SpecializedAudienceExample ;
     :engagementLevel 3 ;
     :narrativeFunction "engage audience attention" ;
-    :narrativeEffectiveness 0.75 ;
+    :narrativeEffectiveness "0.75"^^xsd:float ;
     :appliesTo :IntroductionExample .
 
 :AnalogyExample rdf:type :Analogy ;
     :appropriateFor :GeneralAudienceExample ;
     :engagementLevel 4 ;
     :narrativeFunction "simplify complex concepts" ;
-    :narrativeEffectiveness 0.85 .
+    :narrativeEffectiveness "0.85"^^xsd:float .
 
 :RealWorldExampleInstance rdf:type :RealWorldExample ;
     :appropriateFor :MixedAudienceExample ;
     :engagementLevel 4 ;
     :narrativeFunction "contextualize research" ;
-    :narrativeEffectiveness 0.80 .
+    :narrativeEffectiveness "0.80"^^xsd:float .
 
 ### Example Engagement Strategies
 :InteractivePollExample rdf:type :InteractivePoll ;
