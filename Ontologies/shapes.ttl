@@ -1,0 +1,54 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix sp: <http://example.org/scientific-presentation-ontology#> .
+
+sp:PresentationStructureShape a sh:NodeShape ;
+    sh:targetClass sp:ScientificPresentation ;
+
+    sh:property [
+        sh:path sp:Introduction ;
+        sh:class sp:PresentationSection ;
+        sh:minCount 1 ;
+    ] ;
+
+    sh:property [
+        sh:path sp::LiteratureReview ;
+        sh:class sp:PresentationSection ;
+        sh:minCount 1 ;
+    ] ;
+
+    sh:property [
+        sh:path sp:Conclusion ;
+        sh:class sp:PresentationSection ;
+        sh:minCount 1 ;
+    ] ;
+
+    sh:property [
+        sh:path sp:Discussion ;
+        sh:class sp:PresentationSection ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path sp:Results ;
+        sh:class sp:PresentationSection ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path sp:Methods ;
+        sh:class sp:PresentationSection ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path sp:FutureWork ;
+        sh:class sp:PresentationSection ;
+        sh:minCount 1 ;
+    ] 
+.
+
+sp:ScientificPresentationPresenterShape a sh:NodeShape ;
+  sh:targetClass sp:ScientificPresentation ;
+  sh:property [
+    sh:path sp:hasPresenter ;
+    sh:minCount 1 ;
+    sh:class sp:Presenter ;
+    sh:message "A scientific presentation must have at least one presenter." ;
+  ] .
