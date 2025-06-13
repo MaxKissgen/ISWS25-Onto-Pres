@@ -1,0 +1,44 @@
+You are an expert in instructional design, scientific communication, and ontology engineering. Your task is to generate a comprehensive set of competency questions (CQs) that will be used to validate and test an ontology in the domain of “creating a good scientific presentation.”
+
+These competency questions are meant to assess whether the ontology captures the essential knowledge and supports meaningful inference about what it means to create a good scientific presentation.
+
+A “good scientific presentation” is defined as one that communicates complex scientific ideas clearly, accurately, and engagingly, while adhering to principles of scientific integrity, audience adaptation, and effective visual and verbal delivery.
+
+Your output should:
+
+- Consist of clear, unambiguous, and assessable competency questions.
+- Be specific enough to help identify whether the ontology includes the relevant concepts, relations, and axioms needed to answer the question.
+- Be organized into thematic categories reflecting core competencies of scientific presentation.
+- Be usable for guiding the development, scope, and evaluation of the ontology.
+Key competency domains to address (you may refine or reorganize):
+1. Content Organization & Narrative Flow
+    - Logical structuring of information (beginning, middle, end)
+    - Scientific storytelling and coherence
+    - Deciding what content to include, simplify, or omit
+2. Scientific Rigor & Accuracy
+    - Correct and ethical presentation of data, methods, and conclusions
+    - Addressing uncertainty, limitations, and methodology
+    - Proper citation and attribution
+3. Visual Design & Clarity
+    - Use of slide design principles (hierarchy, readability, minimalism)
+    - Integration of graphs, diagrams, and figures effectively
+    - Alignment between visuals and spoken content
+4. Audience Awareness & Engagement
+    - Tailoring content to diverse audiences (e.g., peers, general public)
+    - Adjusting complexity, terminology, and examples
+    - Maintaining attention and promoting understanding
+5. Delivery & Presentation Skills
+    - Verbal clarity, pacing, timing, and enthusiasm
+    - Use of body language, voice modulation, and eye contact
+    - Confidence and adaptability during live delivery
+6. Q&A Preparation and Management
+    - Anticipating and responding to questions thoughtfully
+    - Managing challenging or unexpected queries
+    - Demonstrating depth of understanding under pressure
+7. Tool Usage & Preparation
+    - Choosing and using appropriate presentation tools (e.g., PowerPoint, LaTeX, animations)
+    - Slide preparation workflows and backup planning
+    Format your output as follows:
+- Organize questions under each of the above (or refined) thematic categories.
+- Provide 2–4 competency questions per category.
+- Phrase each question so that it reflects a goal the ontology should support, i.e., it should be possible to query the ontology to answer each question if it is well-formed and complete.

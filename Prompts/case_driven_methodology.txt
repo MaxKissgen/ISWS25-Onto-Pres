@@ -1,0 +1,18 @@
+Prompt 1:
+Give me a definition of "Good scientific presentation"
+
+---
+
+Prompt 2:
+Ok, now give me 5 examples use-cases of good scientific presentation.
+
+---
+
+Prompt 3:
+Ok, now consider the scenario of "Conference Research Talks", and give me competency questions for an ontology of “Good scientific presentation.”
+
+---
+
+Prompt 4:
+
+Generalize the competency questions for the 'Good Scientific Presentation' ontology that were developed for the 'Conference Research Talks' scenario, so they apply across different presentation contexts (e.g., thesis defenses, classroom lectures, poster sessions, grant proposal presentations). Maintain the structure and intent of the original questions, but abstract them so they are relevant to a wider range of scientific presentation scenarios.

@@ -1,0 +1,104 @@
+You are an expert in instructional design, scientific communication, and ontology engineering. Your task is to refine and expand a given set of competency questions (CQs) based on a controlled vocabulary. Ensure the revised and new CQs align with the ontology domain of “creating a good scientific presentation,” capturing key aspects such as scientific accuracy, audience adaptation, integrity, and effective visual and verbal delivery.
+
+Controlled Vocabulary:
+1. Presentation (Overall)
+* Definition: The entire act of conveying scientific information to an audience.
+* Sub-categories/Related Terms:
+   * Scientific Presentation
+   * Conference Talk
+   * Keynote Address
+   * Workshop
+2. Content
+* Definition: The scientific information and message conveyed.
+* Sub-categories/Related Terms:
+   * Clarity_of_Message
+   * Scientific_Accuracy
+   * Novelty_of_Research
+   * Relevance_to_Audience
+   * Depth_of_Detail (appropriate to audience/time)
+   * Significance_of_Findings
+   * Research_Question
+   * Hypothesis
+   * Background_Information
+   * Literature_Review
+   * Key_Findings
+   * Evidence
+   * Data
+   * Interpretations
+   * Limitations
+   * Future_Work
+   * Takeaway_Message
+   * Supporting_Evidence
+3. Structure
+* Definition: The logical organization and flow of the presentation.
+* Sub-categories/Related Terms:
+   * Introduction
+      * Hook (attention grabber)
+      * Problem_Statement
+      * Context_Setting
+      * Objectives
+      * Roadmap (overview of talk)
+   * Methods_Section
+      * Experimental_Design
+      * Materials
+      * Protocols
+      * Statistical_Analysis
+   * Results_Section
+      * Key_Results
+      * Supporting_Data
+   * Discussion_Section
+      * Interpretation_of_Results
+      * Comparison_to_Literature
+      * Implications
+   * Conclusion
+      * Summary_of_Findings
+      * Answer_to_Research_Question
+      * Broader_Impact
+   * Acknowledgements
+   * References
+   * Logical_Flow
+   * Cohesion
+   * Transitions
+   * Signposting (guiding the audience)
+   * Storytelling_Arc
+6. Audience Engagement
+* Definition: How the presenter connects with and involves the audience.
+* Sub-categories/Related Terms:
+   * Interactive_Elements (if applicable)
+   * Humor_Appropriateness
+   * Relatability
+   * Maintaining_Attention
+   * Storytelling
+   * Questions
+   * Call_to_Action (encouraging further engagement)
+10. Ethical Considerations
+* Definition: Adhering to scientific integrity and best practices.
+* Sub-categories/Related Terms:
+   * Attribution
+   * Acknowledgement_of_Sources
+   * Conflict_of_Interest_Disclosure
+   * Transparency
+
+Initial Competency Questions (CQs):
+**1.Content Organization & Narrative Flow**
+1. Which standard presentation sections (e.g. Introduction, Background, Methods, Results, Discussion, Conclusion) should be included for a given scientific topic?
+2. What is the recommended order of the presentation sections to maximize logical coherence?
+3. Which content items (e.g. technical details, background literature) should be simplified or omitted when presenting to an audience?
+4. Which narrative devices (e.g. analogies, rhetorical questions, real-world examples) are applicable to enhance coherence across multiple sections?
+5. Which scientific details are the most relevant based on presentation purpose and audience characteristics?
+**2.Scientific Rigor & Accuracy**
+1. How should statistical significance and uncertainty be communicated visually and verbally?
+2.  Which statements or figures require citation metadata, and what citation style or format applies?
+3. What level of methodological detail is necessary for reproducibility in a conference talk?
+**3.Audience Awareness & Engagement**
+1. How should technical depth be adjusted for interdisciplinary versus specialized conference audiences?
+2. Which interactive or rhetorical techniques (e.g. live polls, thought experiments) are recommended for a given audience profile?
+3. Which slide transition or timing strategies (e.g. slide duration, frequency of questions) help maintain audience attention?
+**4. Delivery Performance & Presentation Skills**
+1. Which body-language signals (e.g. open posture, gesturing) correlate with demonstration of confidence?
+2. How should eye contact be distributed over audience zones relative to slide changes?
+3. What verbal and non-verbal communication techniques enhance scientific credibility?
+4. What are effective strategies for managing presentation anxiety while maintaining authority?
+**5. Q&A Preparation and Management**
+1. What structured templates (e.g. “Restate → Answer → Elaborate”) should be used to frame responses to audience questions?
+2. Which strategies (e.g. bridging, deferring, clarifying) are appropriate for managing unexpected or critical questions?
